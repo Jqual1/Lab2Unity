@@ -18,6 +18,10 @@ public class SecurityGuard : MonoBehaviour
     public Sprite up;
     public Sprite down;
 
+    public GameObject SecurityGuardChild;
+    public GameObject child;
+   
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,18 +52,32 @@ public class SecurityGuard : MonoBehaviour
         if (pong.transform.position.x > transform.position.x)
         {
             sr.sprite = right;
+            SecurityGuardChild.transform.localScale = new Vector3(-1, 1, 1);
+            child.transform.rotation = Quaternion.Euler(child.transform.rotation.x,child.transform.rotation.y,90);
         }
         else if (pong.transform.position.x < transform.position.x)
         {
             sr.sprite = left;
+            SecurityGuardChild.transform.localScale = new Vector3(1, 1, 1);
+            child.transform.rotation = Quaternion.Euler(child.transform.rotation.x, child.transform.rotation.y, 270);
+
+
         }
         else if (pong.transform.position.y > transform.position.y)
         {
             sr.sprite = up;
+            SecurityGuardChild.transform.localScale = new Vector3(-1, 1, 1);
+            child.transform.rotation = Quaternion.Euler(child.transform.rotation.x, child.transform.rotation.y, 180);
+
+
         }
         else if (pong.transform.position.y < transform.position.y)
         {
             sr.sprite = down;
+            SecurityGuardChild.transform.localScale = new Vector3(1, 1, 1);
+            child.transform.rotation = Quaternion.Euler(child.transform.rotation.x, child.transform.rotation.y, 0);
+
+
         }
 
     }
