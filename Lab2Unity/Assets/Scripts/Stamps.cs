@@ -23,7 +23,6 @@ public class Stamps : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
-            GameManager.Instance.UpdateStamps();
             GameManager.Instance.StartDialog(myText);
 		}
 	}
@@ -31,6 +30,7 @@ public class Stamps : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.Instance.UpdateStamps();
             GameManager.Instance.HideDialog();
             gameObject.SetActive(false);
         }
