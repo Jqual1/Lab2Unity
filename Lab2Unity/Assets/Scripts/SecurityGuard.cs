@@ -96,4 +96,26 @@ public class SecurityGuard : MonoBehaviour
         transform.position = targetPosition;
         NextUp();
     }
+
+    private void OnCollisionEnter2D()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        StopAllCoroutines();
+        StartCoroutine(ColorLerp(new Color(1, 1, 1, 0), 2));
+    }
+
+    IEnumerator ColorLerp(Color endValue, float duration)
+    {
+        float time = 0;
+        Color startValue = sr.color;
+
+        while (time < duration)
+        {
+            sr.color = Color.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        sr.color = endValue;
+        gameObject.SetActive(false);
+    }
 }

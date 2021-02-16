@@ -32,26 +32,33 @@ public class SnailMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        if (GameManager.Instance.IsGameStarted())
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
 
-        if (horizontal > 0)
-        {
-            sr.sprite = right;
+            if (horizontal > 0)
+            {
+                sr.sprite = right;
+            }
+            else if (horizontal < 0)
+            {
+                sr.sprite = left;
+            }
+            else if (vertical > 0)
+            {
+                sr.sprite = up;
+            }
+            else if (vertical < 0)
+            {
+                sr.sprite = down;
+            }
         }
-        else if (horizontal < 0)
+        else
         {
-            sr.sprite = left;
+            horizontal = 0;
+            vertical = 0;
         }
-        else if (vertical > 0)
-        {
-            sr.sprite = up;
-        }
-        else if (vertical < 0)
-        {
-            sr.sprite = down;
-        }
-
     }
 
     private void FixedUpdate()

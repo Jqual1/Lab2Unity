@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -19,10 +20,11 @@ public class GameManager : MonoBehaviour
 
     private Coroutine dialogCo;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -37,6 +39,9 @@ public class GameManager : MonoBehaviour
 		{
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(canvas);
+            DontDestroyOnLoad(events);
+            
 		}
 		else
 		{
@@ -53,7 +58,10 @@ public class GameManager : MonoBehaviour
     public void HideDialog()
 	{
         dialogBox.SetActive(false);
-        StopCoroutine(dialogCo);
+        if (dialogCo != null)
+        {
+            StopCoroutine(dialogCo);
+        }
 	}
 
     IEnumerator TypeText(string text)
@@ -69,8 +77,9 @@ public class GameManager : MonoBehaviour
     public void StartButon()
 	{
         startButton.SetActive(false);
-        StartCoroutine(ColorLerp(new Color(1, 1, 1, 0), 2));
-	}
+        StartCoroutine(LoadYourAsyncScene("SpearSnailWorld"));
+
+    }
 
     public void GameOver()
 	{
@@ -94,4 +103,20 @@ public class GameManager : MonoBehaviour
 		}
         sprite.color = endValue;
 	}
+    IEnumerator LoadYourAsyncScene(string scene)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        StartCoroutine(ColorLerp(new Color(1, 1, 1, 0), 2));
+
+    }
+    public bool IsGameStarted()
+    {
+        return !startButton.activeSelf;
+    }
 }
