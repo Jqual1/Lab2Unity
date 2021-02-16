@@ -24,7 +24,7 @@ public class Stamps : MonoBehaviour
 		if (collision.gameObject.CompareTag("Player"))
 		{
             GameManager.Instance.UpdateStamps();
-            gameObject.SetActive(false);
+            GameManager.Instance.StartDialog(myText);
 		}
 	}
     private void OnTriggerExit2D(Collider2D collision)
@@ -32,6 +32,7 @@ public class Stamps : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.HideDialog();
+            gameObject.SetActive(false);
         }
     }
 }
