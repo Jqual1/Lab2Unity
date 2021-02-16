@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
 
     private int stampsCollected;
 
+    private bool gamePaused;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gamePaused = false;
     }
 
     // Update is called once per frame
@@ -120,7 +122,14 @@ public class GameManager : MonoBehaviour
     }
     public bool IsGameStarted()
     {
-        return !startButton.activeSelf;
+        if (gamePaused)
+        {
+            return false;
+        }
+        else
+        {
+            return !startButton.activeSelf;
+        }
     }
     public void UpdateStamps()
     {
@@ -130,5 +139,9 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+    }
+    public void PauseGame()
+    {
+        gamePaused = !gamePaused;
     }
 }
