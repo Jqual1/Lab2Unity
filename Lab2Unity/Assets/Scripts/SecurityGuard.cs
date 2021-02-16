@@ -101,7 +101,7 @@ public class SecurityGuard : MonoBehaviour
     {
         transform.GetChild(0).gameObject.SetActive(false);
         StopAllCoroutines();
-        StartCoroutine(ColorLerp(new Color(1, 1, 1, 0), 2));
+        StartCoroutine(ColorLerp(new Color(1, 1, 1, 0), 1));
     }
 
     IEnumerator ColorLerp(Color endValue, float duration)
