@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private Coroutine dialogCo;
 
+    private int stampsCollected;
+
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void StartButon()
 	{
+        stampsCollected = 0;
         startButton.SetActive(false);
         StartCoroutine(LoadYourAsyncScene("SpearSnailWorld"));
 
@@ -118,5 +121,14 @@ public class GameManager : MonoBehaviour
     public bool IsGameStarted()
     {
         return !startButton.activeSelf;
+    }
+    public void UpdateStamps()
+    {
+        stampsCollected++;
+        if (stampsCollected == 2)
+        {
+            GameOver();
+        }
+
     }
 }
