@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject canvas;
     public GameObject events;
 
+    AudioSource sound;
+
     private Coroutine dialogCo;
 
     private int stampsCollected;
@@ -29,12 +31,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gamePaused = false;
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!sound.isPlaying)
+        {
+            sound.Play();
+        }
+
     }
 
     void Awake()
