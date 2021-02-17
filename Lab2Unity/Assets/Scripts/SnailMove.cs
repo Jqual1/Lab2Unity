@@ -8,6 +8,8 @@ public class SnailMove : MonoBehaviour
 
     SpriteRenderer sr;
 
+    AudioSource sound;
+
     public Sprite right;
     public Sprite left;
     public Sprite up;
@@ -27,6 +29,8 @@ public class SnailMove : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
 
         sr = GetComponent<SpriteRenderer>();
+
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,6 +62,17 @@ public class SnailMove : MonoBehaviour
         {
             horizontal = 0;
             vertical = 0;
+        }
+        if (horizontal != 0 || vertical != 0)
+        {
+            if (!sound.isPlaying)
+            {
+                sound.Play();
+            }
+        }
+        else
+        {
+            sound.Stop();
         }
     }
 
