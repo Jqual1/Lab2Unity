@@ -36472,7 +36472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162008276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.65, y: -23.4, z: 0.2}
+  m_LocalPosition: {x: 0.53, y: -23.61, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 373855245}
@@ -40022,10 +40022,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 0}
   dialogText: {fileID: 0}
+  scoreBox: {fileID: 0}
+  scoreText: {fileID: 0}
   startButton: {fileID: 0}
   backgroundImage: {fileID: 0}
   canvas: {fileID: 0}
   events: {fileID: 0}
+  stampsTotal: 0
 --- !u!4 &1688234425
 Transform:
   m_ObjectHideFlags: 0

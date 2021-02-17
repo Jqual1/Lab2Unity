@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject dialogBox;
     public GameObject dialogText;
+    public GameObject scoreBox;
+    public GameObject scoreText;
     public GameObject startButton;
     public GameObject backgroundImage;
 
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     private Coroutine dialogCo;
 
     private int stampsCollected;
+    public int stampsTotal;
 
     private bool gamePaused;
 
@@ -88,7 +91,9 @@ public class GameManager : MonoBehaviour
     public void StartButon()
 	{
         stampsCollected = 0;
+        scoreText.GetComponent<TextMeshProUGUI>().text = stampsCollected + "/" + stampsTotal;
         startButton.SetActive(false);
+        scoreBox.SetActive(true);
         StartCoroutine(LoadYourAsyncScene("SpearSnailWorld"));
 
     }
@@ -96,6 +101,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
 	{
         startButton.SetActive(true);
+        scoreBox.SetActive(false);
         StopAllCoroutines();
         HideDialog();
         StartCoroutine(ColorLerp(new Color(1, 1, 1, 1), 2));
@@ -141,7 +147,8 @@ public class GameManager : MonoBehaviour
     public void UpdateStamps()
     {
         stampsCollected++;
-        if (stampsCollected == 2)
+        scoreText.GetComponent<TextMeshProUGUI>().text = stampsCollected + "/" + stampsTotal;
+        if (stampsCollected == stampsTotal)
         {
             GameOver();
         }
