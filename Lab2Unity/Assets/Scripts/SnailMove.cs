@@ -49,11 +49,11 @@ public class SnailMove : MonoBehaviour
             {
                 sr.sprite = left;
             }
-            else if (vertical > 0)
+            else if (vertical < 0)
             {
                 sr.sprite = up;
             }
-            else if (vertical < 0)
+            else if (vertical > 0)
             {
                 sr.sprite = down;
             }
